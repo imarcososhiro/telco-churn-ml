@@ -1,0 +1,23 @@
+# Dados: só a base original é versionada; o resto é gerado pelos notebooks
+*.csv
+!data/raw/telco_churn_data.csv
+
+# Material de apoio local
+*.pdf
+ROTEIRO.md
+
+# Saídas geradas
+models/
+results/
+
+# Python / Jupyter
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# IDEs e ferramentas
+.idea/
+.vscode/
+.claude/

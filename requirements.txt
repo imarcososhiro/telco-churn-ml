@@ -1,0 +1,12 @@
+numpy
+pandas
+scipy
+matplotlib
+seaborn
+scikit-learn
+imbalanced-learn
+joblib
+jupyterlab
+ipykernel
+# opcional (interpretação no notebook 08)
+shap

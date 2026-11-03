@@ -1,0 +1,33 @@
+{
+  "conjunto": "engenharia",
+  "numericas": [
+    "tenure",
+    "MonthlyCharges",
+    "TotalCharges",
+    "n_servicos_adicionais",
+    "servicos_suporte",
+    "log_tenure",
+    "variacao_mensalidade"
+  ],
+  "binarias": [
+    "is_male",
+    "SeniorCitizen",
+    "Partner",
+    "Dependents",
+    "PhoneService",
+    "MultipleLines",
+    "OnlineSecurity",
+    "OnlineBackup",
+    "DeviceProtection",
+    "TechSupport",
+    "StreamingTV",
+    "StreamingMovies",
+    "PaperlessBilling",
+    "mensal_x_fibra"
+  ],
+  "categoricas": [
+    "InternetService",
+    "Contract",
+    "PaymentMethod"
+  ]
+}
