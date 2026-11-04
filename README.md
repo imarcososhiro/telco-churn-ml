@@ -20,7 +20,7 @@ O objetivo é prever quais clientes de uma operadora de telecomunicações vão 
 |---|---|---|---|
 | 01 | [`01_preparacao_dados`](notebooks/01_preparacao_dados.ipynb) | Tipos, valores ausentes, duplicados, inconsistências, codificação e divisão treino/teste | ✅ |
 | 02 | [`02_analise_exploratoria`](notebooks/02_analise_exploratoria.ipynb) | Taxa de churn por grupo com intervalos de confiança | ✅ |
-| 03 | [`03_selecao_transformacao`](notebooks/03_selecao_transformacao.ipynb) | Codificação, padronização, redundâncias (VIF), informação mútua, WoE/IV e engenharia de variáveis | ✅ |
+| 03 | [`03_selecao_transformacao`](notebooks/03_selecao_transformacao.ipynb) | Codificação, padronização, redundâncias (VIF), WoE/IV e engenharia de variáveis | ✅ |
 | 04 | Construção dos modelos | Regressão Logística, KNN, Árvore de Decisão, Random Forest e Gradient Boosting com busca de hiperparâmetros | 🚧 |
 | 05 | Comparação de métodos | Ponderação de classes × distribuição original | 🚧 |
 | 06 | Avaliação | Métricas no teste, curvas ROC/PR, escolha do limiar e captura no top 10% | 🚧 |
@@ -50,8 +50,9 @@ O perfil de maior risco é o cliente **novo, com contrato mensal e fibra óptica
 
 ### Seleção e transformação das variáveis
 - `MonthlyCharges` é praticamente a soma dos preços dos serviços contratados (R² = 0,999, VIF ≈ 860), e `TotalCharges` é redundante com `tenure × MonthlyCharges`.
-- Foram criadas 5 variáveis (`log_tenure`, `n_servicos_adicionais`, `servicos_suporte`, `variacao_mensalidade`, `mensal_x_fibra`). Elas elevam a AP da Regressão Logística de **0,661 para 0,671** (melhor em 4 de 5 folds); os modelos de árvore praticamente não mudam.
-- A remoção de variáveis com baixo *Information Value* e a seleção automática (`SelectKBest`) **pioraram** os resultados: pouca informação individual não significa pouca informação em conjunto.
+- Foram criadas 5 variáveis (`log_tenure`, `n_servicos_adicionais`, `servicos_suporte`, `variacao_mensalidade`, `mensal_x_fibra`). Elas elevam a AP da Regressão Logística de **0,661 para 0,671** (melhor em 4 de 5 folds); o Random Forest praticamente não muda (os conjuntos foram comparados com Regressão Logística e Random Forest, um modelo de cada família).
+- A remoção de variáveis com baixo *Information Value* **piorou** os resultados: pouca informação individual não significa pouca informação em conjunto.
+- Por isso, dois conjuntos seguem para a construção dos modelos: o **base** e o **base + variáveis criadas**, para medir o ganho real das novas variáveis com hiperparâmetros ajustados (e regularização, quando for o caso).
 
 ## Metodologia
 
